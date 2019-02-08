@@ -33,7 +33,7 @@ public class QueenBoard {
   *excludes the character up to the *)
   */
   public String toString(){
-    return "";
+    return "" + board;
 
 
 
