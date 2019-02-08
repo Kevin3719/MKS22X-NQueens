@@ -1,23 +1,34 @@
 public class QueenBoard {
   private int[][]board;
   public QueenBoard(int size){
-    int[][] board = new int[size][size];
+    board = new int[size][size];
   }
-  private boolean addQueen(int r, int c) {
-
-    for (int i = 0; r < board.length; i++) {
+  public boolean addQueen(int r, int c) {
+    board[r][c] = -6;
+    for (int i = c + 1; i < board.length; i++) {
       board[r][i] += 1;
     }
-    for (int i = 0; c < board.length; c++) {
-      board[i][c] += 1;
+    for (int i = 1; r + i < board.length && c + i < board.length; i++) {
+      board[r + i][c + i] += 1;
+    }
+    for (int i = 1; r - i >= 0 && c + i < board.length; i++) {
+      board[r - i][c + i] += 1;
     }
     return true;
   }
-  private boolean removeQueen(int r, int c) {
-
-
+  public boolean removeQueen(int r, int c) {
+    board[r][c] = 0;
+    for (int i = c + 1; i < board.length; i++) {
+      board[r][i] -= 1;
+    }
+    for (int i = 1; r + i < board.length && c + i < board.length; i++) {
+      board[r + i][c + i] -= 1;
+    }
+    for (int i = 1; r - i >= 0 && c + i < board.length; i++) {
+      board[r - i][c + i] -= 1;
+    }
     return true;
-  }
+    }
   /**
   *@return The output string formatted as follows:
   *All numbers that represent queens are replaced with 'Q'
@@ -33,13 +44,19 @@ public class QueenBoard {
   *excludes the character up to the *)
   */
   public String toString(){
-    return "" + board;
+    String output = "";
+    for (int i = 0; i < board.length; i++) {
+      for (int j = 0; j < board.length; j++) {
+        output += board[i][j] + "__";
+      }
+      output += "\n";
+    }
+    return output;
 
 
 
 
   }
-
 
   /**
   *@return false when the board is not solveable and leaves the board filled with zeros;
@@ -61,6 +78,20 @@ public class QueenBoard {
 
 
   }
+
+  public boolean help(int row, int col, int[][] board) {
+    if (col )
+
+
+
+
+
+
+  }
+
+
+
+
 
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
