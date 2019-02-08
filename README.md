@@ -1,1 +1,1 @@
-# MKS22X-NQueens
+# MKS22X-Queens
