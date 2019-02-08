@@ -67,6 +67,24 @@ public class QueenBoard {
 
   */
   public boolean solve(){
+    int row = 0;
+    int col = 0;
+    while (true) {
+      if (col == board.length) {
+        System.out.println
+        return true;
+      }
+
+
+
+
+
+
+
+
+
+
+    }
     return true;
 
 
@@ -79,9 +97,13 @@ public class QueenBoard {
 
   }
 
-  public boolean help(int row, int col, int[][] board) {
-    if (col )
-
+  public boolean help(int, prev, int row, int col, int[][] board) {
+    if (col == board.length) {
+      return true;
+    }
+    if (row == board.length) {
+      return help(prev + 1,0, col, )
+    }
 
 
 
