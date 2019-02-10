@@ -99,15 +99,14 @@ public class QueenBoard {
           else {
             removeQueen(i,col);
             count += 1;
-            return true;
+            return help(col, count);
           }
         }
-
       }
-
-
+      System.out.println(count);
       return false;
     }
+
 
 
 
@@ -123,16 +122,9 @@ public class QueenBoard {
     }
   public int helpcount() {
     return 0;
+    }
 
 
 
 
   }
-
-
-
-
-
-
-
-}
