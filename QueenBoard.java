@@ -53,7 +53,10 @@ public class QueenBoard {
     String output = "";
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board.length; j++) {
-        output += board[i][j] + "__";
+        if (board[i][j] == -6) {
+          output += "Q ";
+        }
+        output += board[i][j] + "_ ";
       }
       output += "\n";
     }
