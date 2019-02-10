@@ -81,12 +81,20 @@ public class QueenBoard {
     if (col == board.length) {
       return true;
     }
-    if (row == board.length, col == 0) {
+    if (row == board.length && col == 0) {
+      return false;
+    }
+    if (col < 0) {
       return false;
     }
     for (int i= 0; i < board.length; i++) {
-
+      if(addQueen(row + i, col)) {
+        return help(0, col + 1);
+      }
+      else {removeQueen(row + i, col);}
     }
+    removeQueen(row, col);
+    return help(row + 1, col - 1);
   }
 
 
