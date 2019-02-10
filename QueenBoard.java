@@ -74,7 +74,6 @@ public class QueenBoard {
   */
   public boolean solve(){
     if (help(0,0)) {
-      System.out.println(this);
       return true;
     }
     return false;
@@ -87,19 +86,16 @@ public class QueenBoard {
     if (col == board.length) {
       return true;
     }
-    if (col == -1) {
-      return false;
-    }
       for(int i = 0; i < board.length; i++) {
         if(addQueen(i,col)) {
           System.out.print(this);
-          if(!help(col + 1,count)) {
-            removeQueen(i,col);
-          }
-          else {
+          if(help(col + 1,count)) {
             removeQueen(i,col);
             count += 1;
             return help(col, count);
+          }
+          else {
+            removeQueen(i,col);
           }
         }
       }
@@ -118,13 +114,19 @@ public class QueenBoard {
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
-    return 0;
+    return helpcount(0,0);
     }
-  public int helpcount() {
-    return 0;
+  public int helpcount(int col, int count) {
+    if (col == board.length) {
+      System.out.println(this);
+      return count += 1;
     }
-
-
-
-
+    for (int i = 0; i < board.length; i++) {
+      if( addQueen(i, col) ) {
+        count += helpcount(col + 1, 0);
+      }
+      removeQueen(i, col);
+    }
+    return count;
+}
   }
