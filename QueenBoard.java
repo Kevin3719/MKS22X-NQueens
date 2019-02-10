@@ -4,7 +4,7 @@ public class QueenBoard {
     board = new int[size][size];
   }
   public boolean addQueen(int r, int c) {
-    if (board [r][c] != 0) {
+    if (board[r][c] != 0) {
       return false;
     }
     board[r][c] = -6;
@@ -20,6 +20,9 @@ public class QueenBoard {
     return true;
   }
   public boolean removeQueen(int r, int c) {
+    if (board[r][c] != -6) {
+      return false;
+    }
     board[r][c] = 0;
     for (int i = c + 1; i < board.length; i++) {
       board[r][i] -= 1;
@@ -54,7 +57,7 @@ public class QueenBoard {
       }
       output += "\n";
     }
-    return output;
+    return output + "\n";
 
 
 
@@ -71,31 +74,41 @@ public class QueenBoard {
   */
   public boolean solve(){
     if (help(0,0)) {
-      System.out.println(board);
+      System.out.println(this);
       return true;
     }
     return false;
   }
 
-  public boolean help(int row, int col) {
+  public boolean help(int col,int count) {
+    if (count > 0) {
+      return true;
+    }
     if (col == board.length) {
       return true;
     }
-    if (row == board.length && col == 0) {
+    if (col == -1) {
       return false;
     }
-    if (col < 0) {
-      return false;
-    }
-    for (int i= 0; i < board.length; i++) {
-      if(addQueen(row + i, col)) {
-        return help(0, col + 1);
+      for(int i = 0; i < board.length; i++) {
+        if(addQueen(i,col)) {
+          System.out.print(this);
+          if(!help(col + 1,count)) {
+            removeQueen(i,col);
+          }
+          else {
+            removeQueen(i,col);
+            count += 1;
+            return true;
+          }
+        }
+
       }
-      else {removeQueen(row + i, col);}
+
+
+      return false;
     }
-    removeQueen(row, col);
-    return help(row + 1, col - 1);
-  }
+
 
 
 
@@ -107,8 +120,14 @@ public class QueenBoard {
   */
   public int countSolutions(){
     return 0;
-  }
+    }
+  public int helpcount() {
+    return 0;
 
+
+
+
+  }
 
 
 
