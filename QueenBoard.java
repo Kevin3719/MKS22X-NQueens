@@ -130,7 +130,6 @@ public class QueenBoard {
     }
   public int helpcount(int col, int count) {
     if (col == board.length) {
-      System.out.println(this);
       return count += 1;
     }
     for (int i = 0; i < board.length; i++) {
